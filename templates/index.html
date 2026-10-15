@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>我的簡易部落格</title>
+    <style>
+        body {
+            font-family: Arial, "PingFang TC", "Microsoft JhengHei", sans-serif;
+            max-width: 750px;
+            margin: 30px auto;
+            padding: 0 20px;
+            background-color: #f7f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        h1, h2 {
+            color: #2c3e50;
+        }
+        /* 表單區域美化 */
+        .form-section {
+            background: #ffffff;
+            border: 1px solid #dce4ec;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 35px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #4b6584;
+        }
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 9px;
+            border: 1px solid #ccd1d9;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-size: 15px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        /* 文章卡片美化 */
+        .post-card {
+            background: #ffffff;
+            border: 1px solid #e1e8ed;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .post-title {
+            margin-top: 0;
+            color: #1a0dab;
+        }
+        .post-author {
+            font-size: 0.9em;
+            color: #777;
+            margin-bottom: 12px;
+        }
+        .post-content {
+            white-space: pre-line;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>📝 我的部落格</h1>
+
+    <!-- 輸入文章表單 -->
+    <div class="form-section">
+        <h2>發表新文章</h2>
+        <form method="POST">
+            <div class="form-group">
+                <label for="title">文章標題 (Title)</label>
+                <input type="text" id="title" name="title" placeholder="請輸入標題..." required>
+            </div>
+
+            <div class="form-group">
+                <label for="author">作者 (Author)</label>
+                <input type="text" id="author" name="author" placeholder="請輸入作者名字..." required>
+            </div>
+
+            <div class="form-group">
+                <label for="content">文章內容 (Content)</label>
+                <textarea id="content" name="content" rows="4" placeholder="請輸入文章內容..." required></textarea>
+            </div>
+
+            <button type="submit">發布文章</button>
+        </form>
+    </div>
+
+    <hr style="border: none; border-top: 2px solid #e2e8f0; margin-bottom: 30px;">
+
+    <!-- 文章列表呈現 -->
+    <h2>文章列表</h2>
+    {% for post in posts %}
+        <div class="post-card">
+            <h3 class="post-title">{{ post.title }}</h3>
+            <div class="post-author">作者：<strong>{{ post.author }}</strong></div>
+            <div class="post-content">{{ post.content }}</div>
+        </div>
+    {% endfor %}
+
+</body>
+</html>
